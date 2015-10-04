@@ -5,7 +5,7 @@ package extras;
  */
 public interface SortListener {
 
-    public void onSortByName();
-    public void onSortByDate();
-    public void onSortByRating();
+    public void onSortByMedico();
+    public void onSortByCita();
+    public void onSortByHorario();
 }

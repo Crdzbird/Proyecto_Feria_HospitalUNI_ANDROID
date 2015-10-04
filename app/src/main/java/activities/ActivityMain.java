@@ -1,10 +1,8 @@
 package activities;
 
 
-import android.content.ComponentName;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -25,7 +23,6 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import anim.AnimationUtils;
 import extras.SortListener;
-import feria.uni.com.medime.LoginActivitie;
 import feria.uni.com.medime.R;
 import fragments.FragmentBoxOffice;
 import fragments.FragmentDrawer;
@@ -35,9 +32,7 @@ import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 import login.L;
-import me.tatarka.support.job.JobInfo;
 import me.tatarka.support.job.JobScheduler;
-
 
 public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
 
@@ -52,11 +47,11 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     //int corresponding to the id of our JobSchedulerService
     private static final int JOB_ID = 100;
     //tag associated with the FAB menu button that sorts by name
-    private static final String TAG_SORT_NAME = "sortName";
+    private static final String TAG_SORT_NAME = "sortMedico";
     //tag associated with the FAB menu button that sorts by date
-    private static final String TAG_SORT_DATE = "sortDate";
+    private static final String TAG_SORT_DATE = "sortCita";
     //tag associated with the FAB menu button that sorts by ratings
-    private static final String TAG_SORT_RATINGS = "sortRatings";
+    private static final String TAG_SORT_RATINGS = "sortHorario";
     //Run the JobSchedulerService every 2 minutes
     private static final long POLL_FREQUENCY = 28800000;
     private JobScheduler mJobScheduler;
@@ -76,7 +71,6 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         setContentView(R.layout.activity_main);
         setupFAB();
         setupTabs();
-        setupJob();
         setupDrawer();
         //animate the Toolbar when it comes into the picture
         AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
@@ -126,27 +120,6 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         }
     }
 
-    private void setupJob() {
-        mJobScheduler = JobScheduler.getInstance(this);
-        //set an initial delay with a Handler so that the data loading by the JobScheduler does not clash with the loading inside the Fragment
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //schedule the job after the delay has been elapsed
-                buildJob();
-            }
-        }, 30000);
-    }
-
-    private void buildJob() {
-        //attach the job ID and the name of the Service that will work in the background
-        JobInfo.Builder builder = new JobInfo.Builder(JOB_ID, new ComponentName(this, LoginActivitie.class));
-        //set periodic polling that needs net connection and works across device reboots
-        builder.setPeriodic(POLL_FREQUENCY)
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPersisted(true);
-        mJobScheduler.schedule(builder.build());
-    }
 
     private void setupFAB() {
         //define the icon for the main floating action button
@@ -264,18 +237,18 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
 
             if (v.getTag().equals(TAG_SORT_NAME)) {
                 //call the sort by name method on any Fragment that implements sortlistener
-               // ((SortListener) fragment).onSortByName();
-                Toast.makeText(getApplicationContext(),"Mensaje 1",Toast.LENGTH_SHORT).show();
+               // ((SortListener) fragment).onSortByName()
+                Toast.makeText(getBaseContext(),"Mensaje 1",Toast.LENGTH_SHORT).show();
             }
             if (v.getTag().equals(TAG_SORT_DATE)) {
                 //call the sort by date method on any Fragment that implements sortlistener
                 //((SortListener) fragment).onSortByDate();
-                Toast.makeText(getApplicationContext(),"Mensaje 2",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Mensaje 2",Toast.LENGTH_SHORT).show();
             }
             if (v.getTag().equals(TAG_SORT_RATINGS)) {
                 //call the sort by ratings method on any Fragment that implements sortlistener
                 //((SortListener) fragment).onSortByRating();
-                Toast.makeText(getApplicationContext(),"Mensaje 3",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Mensaje 3",Toast.LENGTH_SHORT).show();
             }
         }
 

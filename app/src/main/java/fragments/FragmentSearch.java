@@ -61,15 +61,7 @@ public class FragmentSearch extends Fragment implements SortListener{
         L.t(getActivity(), "sort name search");
     }
 
-    @Override
-    public void onSortByDate() {
 
-    }
-
-    @Override
-    public void onSortByRating() {
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,4 +69,19 @@ public class FragmentSearch extends Fragment implements SortListener{
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
-}
+
+     @Override
+     public void onSortByMedico() {
+
+     }
+
+     @Override
+     public void onSortByCita() {
+
+     }
+
+     @Override
+     public void onSortByHorario() {
+
+     }
+ }

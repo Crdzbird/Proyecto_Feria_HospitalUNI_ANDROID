@@ -74,17 +74,17 @@ public class FragmentBoxOffice extends Fragment  implements SortListener{
     }
 
     @Override
-    public void onSortByName() {
+    public void onSortByMedico() {
 
     }
 
     @Override
-    public void onSortByDate() {
+    public void onSortByCita() {
 
     }
 
     @Override
-    public void onSortByRating() {
+    public void onSortByHorario() {
 
     }
 }

@@ -40,22 +40,17 @@ public class FragmentDummy extends Fragment implements SortListener{
     }
 
     @Override
-    public void onSortByName() {
+    public void onSortByMedico() {
 
     }
 
     @Override
-    public void onSortByDate() {
+    public void onSortByCita() {
 
     }
 
     @Override
-    public void onSortByRating() {
+    public void onSortByHorario() {
 
     }
-
-    /*
-    Havent called this method anywhere
-     */
-
 }
